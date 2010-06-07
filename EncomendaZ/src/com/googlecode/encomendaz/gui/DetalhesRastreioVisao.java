@@ -30,6 +30,8 @@ public class DetalhesRastreioVisao extends javax.swing.JFrame {
         tblDados = new javax.swing.JTable();
         btnSair = new javax.swing.JButton();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.googlecode.encomendaz.RastreadorApp.class).getContext().getResourceMap(DetalhesRastreioVisao.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -51,7 +53,6 @@ public class DetalhesRastreioVisao extends javax.swing.JFrame {
 
         getContentPane().add(scrollTblDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 240));
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.googlecode.encomendaz.RastreadorApp.class).getContext().getResourceMap(DetalhesRastreioVisao.class);
         btnSair.setText(resourceMap.getString("btnSair.text")); // NOI18N
         btnSair.setName("btnSair"); // NOI18N
         btnSair.addActionListener(new java.awt.event.ActionListener() {
