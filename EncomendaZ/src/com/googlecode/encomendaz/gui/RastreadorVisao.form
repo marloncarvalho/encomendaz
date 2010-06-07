@@ -51,7 +51,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Rastreamentos">
+              <JTabbedPaneConstraints tabName="Encomendas">
                 <Property name="tabTitle" type="java.lang.String" resourceKey="painelRastreamentos.TabConstraints.tabTitle"/>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -327,7 +327,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Sobre o Rastreador">
+              <JTabbedPaneConstraints tabName="Sobre o EncomendaZ">
                 <Property name="tabTitle" type="java.lang.String" resourceKey="painelSobre.TabConstraints.tabTitle"/>
               </JTabbedPaneConstraints>
             </Constraint>
