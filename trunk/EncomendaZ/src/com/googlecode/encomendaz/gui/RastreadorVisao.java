@@ -29,6 +29,7 @@ import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -370,7 +371,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
             txtCodigo.setText("Informe um novo código");
         } catch (BCException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-            new TratadorErros("Não foi possível obter contato com os Correios.",ex);
+            new TratadorErros(ex.getMessage(), ex);
         }
 }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -519,7 +520,10 @@ public class RastreadorVisao extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             JMenuItem item = (JMenuItem) e.getSource();
             if ("Remover".equals(item.getText())) {
-                adapter.remover(e);
+                int resp = JOptionPane.showConfirmDialog(RastreadorVisao.this, "Confirma a exclusão?");
+                if ( resp == 0 ) {
+                    adapter.remover(e);
+                }
             }
             if ("Detalhes".equals(item.getText())) {
                 adapter.exibirDetalhes();

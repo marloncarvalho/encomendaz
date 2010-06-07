@@ -65,6 +65,13 @@ public class RastreadorImpl extends SimpleBC<Rastreio> implements Rastreador {
             throw new BCException("Código não pode ser nulo.");
         }
 
+        Collection<RegistroRastreamento> rastreios = null;
+        try {
+            rastreios = Rastreamento.rastrear(codigo);
+        } catch (AlfredException ae) {
+            throw new BCException(ae);
+        }
+
         // Obter o Rastreio e limpar as situações.
         // Isto, caso exista. Senão, precisa criar um novo rastreio.
         Rastreio rastreio = this.obterRastreioPorCodigo(codigo);
@@ -79,7 +86,7 @@ public class RastreadorImpl extends SimpleBC<Rastreio> implements Rastreador {
         }
 
         try {
-            Collection<RegistroRastreamento> rastreios = Rastreamento.rastrear(codigo);
+            
             for(RegistroRastreamento rr : rastreios ) {
                 SituacaoRastreio sr = new SituacaoRastreio();
                 if ( "entregue".equals(rr.getAcao().toLowerCase()) ) {
