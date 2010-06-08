@@ -4,9 +4,8 @@
 package com.googlecode.encomendaz;
 
 import com.googlecode.encomendaz.gui.RastreadorVisao;
-import com.googlecode.encomendaz.gui.utils.Configuracao;
 import com.googlecode.encomendaz.gui.utils.Registro;
-import com.googlecode.encomendaz.quartz.AtualizadorRastreiosJob;
+import com.googlecode.encomendaz.quartz.InicializadorQuartz;
 import java.awt.AWTException;
 import java.awt.Image;
 import java.awt.MenuItem;
@@ -16,21 +15,13 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.SimpleTrigger;
-import org.quartz.impl.StdSchedulerFactory;
 
 public class RastreadorApp extends SingleFrameApplication {
-    private SchedulerFactory sf = new StdSchedulerFactory();
-    private Scheduler sched;
+
     private TrayIcon trayIcon;
     private RastreadorVisao rastreadorVisao;
 
@@ -59,18 +50,15 @@ public class RastreadorApp extends SingleFrameApplication {
             popup.addSeparator();
             popup.add(defaultItem);
             popup.addActionListener(new ActionListener() {
+
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     String acmd = ae.getActionCommand();
                     if (acmd.equals("Exit")) {
-                        try {
-                            sched.shutdown(true);
-                            rastreadorVisao.setVisible(false);
-                            rastreadorVisao.dispose();
-                            RastreadorApp.getInstance().exit();
-                        } catch (SchedulerException ex) {
-                            Logger.getLogger(RastreadorApp.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        InicializadorQuartz.parar();
+                        rastreadorVisao.setVisible(false);
+                        rastreadorVisao.dispose();
+                        RastreadorApp.getInstance().exit();
                     } else if (acmd.equals("Restore")) {
                         rastreadorVisao.setVisible(true);
                         rastreadorVisao.setExtendedState(javax.swing.JFrame.NORMAL);
@@ -87,20 +75,7 @@ public class RastreadorApp extends SingleFrameApplication {
     }
 
     public void inicializarQuartz() {
-        try {
-            sched = sf.getScheduler();
-            JobDetail job = new JobDetail("job1", "group1", AtualizadorRastreiosJob.class);
-            SimpleTrigger trigger = new SimpleTrigger("myTrigger",
-                    null,
-                    new Date(),
-                    null,
-                    SimpleTrigger.REPEAT_INDEFINITELY,
-                    (Configuracao.get().getTempoAtualizacao() * 60L) * 1000L);
-            sched.scheduleJob(job, trigger);
-            sched.start();
-        } catch (SchedulerException ex) {
-            Logger.getLogger(RastreadorApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        InicializadorQuartz.inicializar();
     }
 
     /**
