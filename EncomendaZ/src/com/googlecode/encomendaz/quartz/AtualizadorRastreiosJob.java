@@ -28,7 +28,7 @@ public class AtualizadorRastreiosJob implements Job {
         try {
             String s = RastreadorFactory.create().atualizarRastreiosAtivos();
             if ( s != null && !"".equals(s) ) {
-                Registro.getSystemTrayIcon().displayMessage("Mensagem", "Os rastreios a seguir foram atualizados: \n" + s, MessageType.INFO);
+                Registro.getSystemTrayIcon().displayMessage("EncomendaZ", "As encomendas a seguir foram atualizadas: " + s, MessageType.INFO);
                 Registro.getRastreadorVisao().obterRastreios();
             }
         } catch (BCException ex) {

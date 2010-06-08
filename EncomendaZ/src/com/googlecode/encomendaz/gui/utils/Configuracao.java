@@ -6,6 +6,7 @@ package com.googlecode.encomendaz.gui.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -40,6 +41,13 @@ final public class Configuracao {
             try {
                 file.createNewFile();
                 in = new FileInputStream(file);
+                props.load(in);
+            } catch (IOException ex) {
+                Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                FileInputStream in = new FileInputStream(file);
                 props.load(in);
             } catch (IOException ex) {
                 Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);

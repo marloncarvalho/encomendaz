@@ -134,8 +134,11 @@ public class RastreadorImpl extends SimpleBC<Rastreio> implements Rastreador {
             int total = rastreio.getSituacoes().size();
             Rastreio r2 = atualizarRastreios(rastreio.getCodigo());
             if ( total != r2.getSituacoes().size() ) {
+                sb.append("[");
                 sb.append(r2.getCodigo());
-                sb.append("\n");
+                sb.append(" - ");
+                sb.append(r2.getUltimaSituacao().getAcao());
+                sb.append("], ");
             }
         }
         return sb.toString();

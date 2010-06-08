@@ -19,6 +19,7 @@ import com.googlecode.encomendaz.businesscontrollers.RastreadorFactory;
 import com.googlecode.encomendaz.entidades.Rastreio;
 import com.googlecode.encomendaz.gui.tablemodels.RastreioTableModel;
 import com.googlecode.encomendaz.gui.utils.Configuracao;
+import com.googlecode.encomendaz.quartz.InicializadorQuartz;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -53,7 +54,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         
         this.txtTempo.setText(String.valueOf(Configuracao.get().getTempoAtualizacao()));
         this.setResizable(false);
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/googlecode/encomendaz/resources/tray-ok.png")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/googlecode/encomendaz/resources/icon.png")));
 
         JMenuItem menuItem = new JMenuItem("Remover");
         menuItem.addActionListener(new ActionAdapter(this));
@@ -236,7 +237,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
                     .add(cmbFiltros, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btnNovo))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         painelRastreamentos.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
@@ -326,7 +327,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         jLabel3.setIcon(resourceMap.getIcon("jLabel3.icon")); // NOI18N
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        painelDoacoes.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+        painelDoacoes.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
 
         tabbedPane.addTab(resourceMap.getString("painelDoacoes.TabConstraints.tabTitle"), painelDoacoes); // NOI18N
 
@@ -338,7 +339,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
         painelSobre.add(jLabel1);
-        jLabel1.setBounds(100, 30, 540, 300);
+        jLabel1.setBounds(90, 30, 540, 300);
 
         tabbedPane.addTab(resourceMap.getString("painelSobre.TabConstraints.tabTitle"), painelSobre); // NOI18N
 
@@ -349,7 +350,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         jLabel6.setIcon(resourceMap.getIcon("jLabel6.icon")); // NOI18N
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         tabbedPane.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
@@ -407,6 +408,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
         if (Numeros.isFloat(txtTempo.getText())) {
             Configuracao.get().setTempoAtualizacao(Long.valueOf(txtTempo.getText()));
+            InicializadorQuartz.reiniciar();
         }
     }//GEN-LAST:event_btnAplicarActionPerformed
 
