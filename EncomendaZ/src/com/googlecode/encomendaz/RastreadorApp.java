@@ -37,7 +37,12 @@ public class RastreadorApp extends SingleFrameApplication {
     public void inicializarTray() {
         if (SystemTray.isSupported()) {
             final SystemTray tray = SystemTray.getSystemTray();
-            Image image = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/googlecode/encomendaz/resources/tray-ok.png"));
+            Image image = null;
+            if ( System.getProperty("os.name").toLowerCase().indexOf("windows") > -1 ) {
+                image = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/googlecode/encomendaz/resources/tray-ok-wnd.png"));
+            } else {
+                image = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/com/googlecode/encomendaz/resources/tray-ok.png"));
+            }
             setTrayIcon(new TrayIcon(image));
             Registro.setSystemTrayIcon(getTrayIcon());
             PopupMenu popup = new PopupMenu();
