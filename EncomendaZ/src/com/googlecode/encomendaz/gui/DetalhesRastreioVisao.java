@@ -26,14 +26,22 @@ public class DetalhesRastreioVisao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSair = new javax.swing.JButton();
         scrollTblDados = new javax.swing.JScrollPane();
         tblDados = new javax.swing.JTable();
-        btnSair = new javax.swing.JButton();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.googlecode.encomendaz.RastreadorApp.class).getContext().getResourceMap(DetalhesRastreioVisao.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSair.setText(resourceMap.getString("btnSair.text")); // NOI18N
+        btnSair.setName("btnSair"); // NOI18N
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, java.awt.BorderLayout.PAGE_END);
 
         scrollTblDados.setName("scrollTblDados"); // NOI18N
 
@@ -49,24 +57,18 @@ public class DetalhesRastreioVisao extends javax.swing.JFrame {
             }
         ));
         tblDados.setName("tblDados"); // NOI18N
+        tblDados.setPreferredSize(new java.awt.Dimension(450, 64));
+        tblDados.setSize(new java.awt.Dimension(450, 0));
+        tblDados.setSurrendersFocusOnKeystroke(true);
         scrollTblDados.setViewportView(tblDados);
 
-        getContentPane().add(scrollTblDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 240));
-
-        btnSair.setText(resourceMap.getString("btnSair.text")); // NOI18N
-        btnSair.setName("btnSair"); // NOI18N
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 100, -1));
+        getContentPane().add(scrollTblDados, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.setVisible(false);
         this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
+}//GEN-LAST:event_btnSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
