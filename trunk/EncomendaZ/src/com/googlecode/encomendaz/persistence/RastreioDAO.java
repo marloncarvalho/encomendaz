@@ -29,6 +29,7 @@ import java.util.List;
  */
 public interface RastreioDAO extends GenericDAO<Rastreio>{
 
+    List<Rastreio> obterTodosRastreios() throws DAOException;
     Rastreio obterRastreioPorCodigo(String codigo) throws DAOException;
     List<Rastreio> obterRastreiosAtivos() throws DAOException;
     List<Rastreio> obterRastreiosInativos() throws DAOException;
