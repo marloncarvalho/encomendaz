@@ -21,7 +21,11 @@ import com.googlecode.mastercrud.persistence.Criterias;
 import com.googlecode.mastercrud.persistence.hibernate.DAOHibernate;
 import com.googlecode.encomendaz.entidades.Rastreio;
 import com.googlecode.encomendaz.persistence.RastreioDAO;
+import com.googlecode.mastercrud.persistence.hibernate.HibernateUtil;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Classe de Persistência para a entidade de Rastreio.
@@ -30,6 +34,7 @@ import java.util.List;
  * @since 1.0
  */
 public class RastreioDAOImpl extends DAOHibernate<Rastreio> implements RastreioDAO { 
+
 
     @Override
     public Rastreio obterRastreioPorCodigo(String codigo) throws DAOException {
@@ -47,20 +52,27 @@ public class RastreioDAOImpl extends DAOHibernate<Rastreio> implements RastreioD
 
     @Override
     public List<Rastreio> obterRastreiosAtivos() throws DAOException {
-        String query = "obterRastreiosAtivos";
-        Criterias c = new Criterias();
-        c.setQuery(query);
-        List<Rastreio> list = super.listByCriteria(c).getResult();
-        return list;
+        Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Rastreio.class);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.add(Restrictions.eq("entregue", false)).createCriteria("situacoes").addOrder(Order.desc("data"));
+        return criteria.list();
     }
 
     @Override
     public List<Rastreio> obterRastreiosInativos() throws DAOException {
-        String query = "obterRastreiosInativos";
-        Criterias c = new Criterias();
-        c.setQuery(query);
-        List<Rastreio> list = super.listByCriteria(c).getResult();
-        return list;
+        Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Rastreio.class);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.add(Restrictions.eq("entregue", true)).createCriteria("situacoes").addOrder(Order.desc("data"));
+        return criteria.list();
+    }
+
+    @Override
+    public List<Rastreio> obterTodosRastreios() throws DAOException {
+        Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Rastreio.class);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.createCriteria("situacoes").addOrder(Order.desc("data"));
+        return criteria.list();
+
     }
 
 }
