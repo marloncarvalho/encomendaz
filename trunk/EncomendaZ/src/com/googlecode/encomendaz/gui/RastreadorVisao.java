@@ -124,7 +124,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         RastreioTableModel rtm = (RastreioTableModel) tblDados.getModel();
         Rastreio r = rtm.obterRastreio(selectedRow);
         DetalhesRastreioVisao drv = new DetalhesRastreioVisao(r.getSituacoes());
-        drv.setSize(550,305);
+        drv.setSize(700,305);
         drv.setVisible(true);
     }
 
@@ -180,7 +180,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
                 formWindowIconified(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         tabbedPane.setName("tabbedPane"); // NOI18N
 
@@ -223,7 +223,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(cmbFiltros, 0, 292, Short.MAX_VALUE)
+                .add(cmbFiltros, 0, 283, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 296, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -237,7 +237,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
                     .add(cmbFiltros, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(txtCodigo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btnNovo))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         painelRastreamentos.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
@@ -296,7 +296,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
                 .add(txtTempo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 64, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel5)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 249, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 182, Short.MAX_VALUE)
                 .add(btnAplicar)
                 .addContainerGap())
         );
@@ -308,7 +308,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
                     .add(txtTempo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5)
                     .add(btnAplicar))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         painelConfig.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 700, 70));
@@ -354,7 +354,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
 
         tabbedPane.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 752, 390));
+        getContentPane().add(tabbedPane);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -447,7 +447,7 @@ public class RastreadorVisao extends javax.swing.JFrame {
         } else {
             try {
                 RastreioTableModel rtm = (RastreioTableModel) tblDados.getModel();
-                rtm.adicionar(RastreadorFactory.create().list(new Criterias()).getResult());
+                rtm.adicionar(RastreadorFactory.create().obterTodosRastreios());
             } catch (BCException ex) {
                 Logger.getLogger(RastreadorVisao.class.getName()).log(Level.SEVERE, null, ex);
             }
