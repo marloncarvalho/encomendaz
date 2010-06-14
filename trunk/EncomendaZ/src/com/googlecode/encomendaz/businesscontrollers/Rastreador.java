@@ -31,6 +31,7 @@ public interface Rastreador extends GenericBC<Rastreio>{
     String atualizarRastreiosAtivos() throws BCException;
     List<Rastreio> obterRastreiosInativos() throws BCException;
     List<Rastreio> obterRastreiosAtivos() throws BCException;
+    List<Rastreio> obterTodosRastreios() throws BCException;
     Rastreio atualizarRastreios(String codigo) throws BCException;
     Rastreio obterRastreioPorCodigo(String codigo) throws BCException;
 }
