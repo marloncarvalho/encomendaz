@@ -43,9 +43,7 @@ import org.hibernate.annotations.CascadeType;
 @Table
 @NamedQueries(
     {
-        @NamedQuery(query="select rastreio from Rastreio rastreio where rastreio.codigo = :rastreio", name="obterRastreioPorCodigo"),
-        @NamedQuery(query="select rastreio from Rastreio rastreio where rastreio.entregue = false", name="obterRastreiosAtivos"),
-        @NamedQuery(query="select rastreio from Rastreio rastreio where rastreio.entregue = true", name="obterRastreiosInativos")
+        @NamedQuery(query="select rastreio from Rastreio rastreio where rastreio.codigo = :rastreio", name="obterRastreioPorCodigo")
     }
 )
 public class Rastreio implements com.googlecode.mastercrud.entity.Entity {
