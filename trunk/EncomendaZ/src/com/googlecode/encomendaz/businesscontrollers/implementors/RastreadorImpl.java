@@ -58,6 +58,15 @@ public class RastreadorImpl extends SimpleBC<Rastreio> implements Rastreador {
         }
     }
 
+    @Override
+    public List<Rastreio> obterTodosRastreios() throws BCException {
+        try {
+            return dao.obterTodosRastreios();
+        } catch (DAOException ex) {
+            Logger.getLogger(RastreadorImpl.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BCException(ex);
+        }
+    }
 
     @Override
     public Rastreio atualizarRastreios(String codigo) throws BCException {
